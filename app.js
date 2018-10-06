@@ -19,8 +19,7 @@ app.use(session({
     name: 'sessionID',
     secret: 'MySecretKey',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
+    saveUninitialized: true
 }));
 app.use(bodyParser.urlencoded({
     extended: true
