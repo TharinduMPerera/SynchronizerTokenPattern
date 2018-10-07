@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
     }
 });
 
+/* GET login page. */
 router.get('/login', function (req, res, next) {
     res.render('../public/views/login', {message: ''});
 });
@@ -28,6 +29,12 @@ router.get('/home', function (req, res, next) {
     }
 });
 
+/* GET token. */
+router.get('/token', function(req, res) {
+    res.json(req.session.csrf);
+});
+
+/* POST login. */
 router.post('/login', function (req, res, next) {
     if (req.body.username == "admin" && req.body.password == "admin") {
         req.session.csrf = generateToken();

@@ -5,6 +5,7 @@
     <title>Login</title>
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="styles/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 </head>
 <body>
 <div class="login-form">
@@ -23,15 +24,15 @@
 <script type="text/javascript">
 
     getToken()
-    
+
     function getToken() {
         $.ajax({
             type: "GET",
             url: "http://localhost:3000/token",
             contentType: "text/json",
             cache: false,
-            success: function(data) {
-                $("#submit-btn").before('<input type="hidden" name="csrf" value="'+data+'">');
+            success: function(token) {
+                $("#submit-btn").before('<input type="hidden" name="csrf" value="'+token+'">');
             },
             error: function () {
             }
