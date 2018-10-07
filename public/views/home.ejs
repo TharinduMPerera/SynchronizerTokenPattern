@@ -16,8 +16,28 @@
                    required="required">
             <i class="fa fa-envelope"></i>
         </div>
-        <button type="submit" class="log-btn">Submit</button>
+        <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
     </form>
 </div>
+
+<script type="text/javascript">
+
+    getToken()
+    
+    function getToken() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/token",
+            contentType: "text/json",
+            cache: false,
+            success: function(data) {
+                $("#submit-btn").before('<input type="hidden" name="csrf" value="'+data+'">');
+            },
+            error: function () {
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
