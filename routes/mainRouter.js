@@ -30,7 +30,7 @@ router.get('/home', function (req, res, next) {
 });
 
 /* GET token. */
-router.get('/token', function(req, res) {
+router.get('/token', function (req, res, next) {
     res.json(req.session.csrf);
 });
 
@@ -43,6 +43,20 @@ router.post('/login', function (req, res, next) {
     } else {
         res.render('../public/views/login', {message: 'Invalid username or password!'});
     }
+});
+
+/* POST message. */
+router.post('/message', function (req, res, next) {
+    var message = '';
+    var className = '';
+    if (req.session.csrf == req.body.csrf) {
+        message = 'CSRF token is valid.';
+        className = 'message-success';
+    } else {
+        message = 'Invalid CSRF token!';
+        className = 'message-fail';
+    }
+    res.render('../public/views/response', {message: message, className: className});
 });
 
 
