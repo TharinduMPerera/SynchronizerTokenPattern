@@ -9,7 +9,7 @@ function generateToken() {
 /* GET login page. */
 router.get('/', function (req, res, next) {
     if (req.session.username) {
-        res.render('../public/views/home');
+        res.redirect('home');
     } else {
         res.redirect('login');
     }
